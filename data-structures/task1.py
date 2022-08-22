@@ -20,24 +20,24 @@ def BigCross1(M,m):
     cross_center = [0,0]
     leaf_size = 0
     for row in range(m):
-        for columeumeume in range(m):
+        for colume in range(m):
             i = 1
-            if M[row][columeumeume] == 1:
+            if M[row][colume] == 1:
                 while True:
                     # if the leaf_size reached the maximun size
-                    if m+row == i or m-row == i or m+columeumeume == i or m-columeumeume == i:
+                    if row+1 == i or m-row == i or colume+1 == i or m-colume == i:
                         if i > leaf_size:
                             leaf_size=i
-                            cross_center = [row,columeumeume]
-                        break
+                            cross_center = [row,colume]
+                        break 
                     # check if the cross's condition met, if so increase i by 1
-                    elif M[row+i][columeumeume] == M[row-i][columeumeume] == M[row][columeumeume+i] == M[row][columeumeume-i] == 1:
+                    elif M[row+i][colume] == M[row-i][colume] == M[row][colume+i] == M[row][colume-i] == 1:
                         i = i + 1
                     # if condition doesn't met, check if new record reached, record and exit
                     else:
                         if i > leaf_size:
                             leaf_size=i
-                            cross_center = [row,columeumeume]
+                            cross_center = [row,colume]
                         break
     cross_center = [cross_center[0]+1, cross_center[1]+1]
     return(cross_center,leaf_size-1)
