@@ -1,0 +1,35 @@
+#board {
+    width: 400px;
+    height: 400px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.black {
+    background-color: black;
+}
+
+.white {
+    background-color: white;
+}
+
+.piece {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: red;
+    cursor: pointer;
+}
+
+.player2 {
+    background-color: blue;
+}
