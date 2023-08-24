@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +8,51 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <!-- Start Modal -->
+    <div class="modal fade" id="playerNamesModal" tabindex="-1" role="dialog" aria-labelledby="playerNamesLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="playerNamesLabel">Enter Player Names</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="player1Name">Player 1 (Red):</label>
+                        <input type="text" class="form-control" id="player1Name" placeholder="Enter name">
+                    </div>
+                    <div class="form-group">
+                        <label for="player2Name">Player 2 (Blue):</label>
+                        <input type="text" class="form-control" id="player2Name" placeholder="Enter name">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="startGame">Start Game</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+
     <div class="container">
         <div class="row">
+            <div class="col text-center">
+                <h2 id="player1Display"></h2>
+            </div>
             <div class="col">
                 <div id="board"></div>
+            </div>
+            <div class="col text-center">
+                <h2 id="player2Display"></h2>
             </div>
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
