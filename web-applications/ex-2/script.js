@@ -15,7 +15,6 @@ $(document).ready(function () {
         
         $('#playerNamesModal').modal('hide'); // Hide modal after collecting names
 
-        createBoard();
     });
 
     var selectedPiece = null;
@@ -53,31 +52,6 @@ $(document).ready(function () {
 
 function togglePlayer() {
     currentPlayer = (currentPlayer === 'player1') ? 'player2' : 'player1';
-}
-
-function createBoard() {
-    var isBlack = false;
-    for (var row = 0; row < 8; row++) {
-        for (var col = 0; col < 8; col++) {
-            var cell = $('<div>').addClass('cell');
-            if (isBlack) {
-                cell.addClass('black');
-                if (row < 3) {
-                    var piece = $('<div>').addClass('piece player1');
-                    cell.append(piece);
-                }
-                if (row > 4) {
-                    var piece = $('<div>').addClass('piece player2');
-                    cell.append(piece);
-                }
-            } else {
-                cell.addClass('white');
-            }
-            $('#board').append(cell);
-            isBlack = !isBlack;
-        }
-        isBlack = !isBlack;
-    }
 }
 
 function isValidMove(fromCell, toCell) {
