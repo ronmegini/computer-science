@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="bg-light">
     <!-- Start Modal -->
     <div class="modal fade" id="playerNamesModal" tabindex="-1" role="dialog" aria-labelledby="playerNamesLabel"
         aria-hidden="true">
@@ -29,25 +29,25 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="startGame">Start Game</button>
+                    <button type="button" class="btn btn-dark" id="startGame">Start Game</button>
                 </div>
             </div>
         </div>
     </div>
     <!-- End Modal -->
 
-    <div class="container">
+    <div class="container mt-5">
         <div class="row">
-            <div class="col text-center">
-                <h2 id="player1Display"></h2>
-                <h2><span id="player1Display">Score</span>: <span id="player1Score">0</span></h2>
+            <div class="col text-center mb-3">
+                <h2 id="player1Display" class="text-danger"></h2>
+                <h3><span>Score</span>: <span id="player1Score">0</span></h3>
             </div>
-            <div class="col">
+            <div class="col-6 d-flex justify-content-center">
                 <div id="board"></div>
             </div>
-            <div class="col text-center">
-                <h2 id="player2Display"></h2>
-                <h2><span id="player2Display">Score</span>: <span id="player2Score">0</span></h2>
+            <div class="col text-center mb-3">
+                <h2 id="player2Display" class="text-primary"></h2>
+                <h3><span>Score</span>: <span id="player2Score">0</span></h3>
             </div>
         </div>
     </div>
