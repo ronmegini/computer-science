@@ -1,3 +1,7 @@
+var player1Score = 0;
+var player2Score = 0;
+var currentPlayer = 'player1'; // Start with player1's turn
+
 $(document).ready(function () {
     
     $('#playerNamesModal').modal('show'); // Show modal on page load
@@ -16,7 +20,6 @@ $(document).ready(function () {
 
     var selectedPiece = null;
     var selectedCell = null;
-    var currentPlayer = 'player1'; // Start with player1's turn
 
     // Using event delegation for .piece
     $('#board').on('click', '.piece', function() {
@@ -40,7 +43,7 @@ $(document).ready(function () {
                 selectedPiece.removeClass('selected');
                 selectedPiece = null;
 
-                currentPlayer = togglePlayer(currentPlayer); // Toggle to the other player after a valid move
+                togglePlayer(); // Toggle to the other player after a valid move
             } else {
                 alert("Invalid move!"); // Notify user of illegal move.
             }
@@ -48,8 +51,8 @@ $(document).ready(function () {
     });
 });
 
-function togglePlayer(currentPlayer) {
-    return (currentPlayer === 'player1') ? 'player2' : 'player1';
+function togglePlayer() {
+    currentPlayer = (currentPlayer === 'player1') ? 'player2' : 'player1';
 }
 
 function createBoard() {
@@ -82,12 +85,28 @@ function isValidMove(fromCell, toCell) {
     var fromCol = fromCell.index('#board .cell') % 8;
     var toRow = toCell.index('#board .cell') / 8 | 0;
     var toCol = toCell.index('#board .cell') % 8;
-    
+
     var piece = fromCell.children().first();
-    
-    // Check if the move is diagonal
-    if (Math.abs(fromRow - toRow) !== 1 || Math.abs(fromCol - toCol) !== 1) {
-        return false;
+    var moveDistanceRow = Math.abs(fromRow - toRow);
+    var moveDistanceCol = Math.abs(fromCol - toCol);
+
+    if (moveDistanceRow !== 1 || moveDistanceCol !== 1) {
+        if (moveDistanceRow !== 2 || moveDistanceCol !== 2) {
+            return false;
+        } else {
+            var middleRow = (fromRow + toRow) / 2;
+            var middleCol = (fromCol + toCol) / 2;
+            var middleCell = $('#board .cell').eq(middleRow * 8 + middleCol);
+            var middlePiece = middleCell.children().first();
+
+            if (middlePiece.length && !middlePiece.hasClass(currentPlayer)) {
+                middlePiece.remove(); // Capture the piece
+                updateScore(); // Update the score
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
     // Check direction based on the player
@@ -96,6 +115,18 @@ function isValidMove(fromCell, toCell) {
     } else if (piece.hasClass('player2') && toRow >= fromRow) {
         return false; // player2 pieces can only move up
     }
-    
+
     return true;
+}
+
+function updateScore() {
+    if (currentPlayer === 'player1') {
+        player1Score++;
+        console.log(player1Score)
+        $('#player1Score').text(player1Score); // Assuming you've added this to your HTML
+    } else {
+        player2Score++;
+        console.log(player2Score)
+        $('#player2Score').text(player2Score); // Assuming you've added this to your HTML
+    }
 }
